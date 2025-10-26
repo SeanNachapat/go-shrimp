@@ -1,8 +1,6 @@
-export default function Home() {
-  let user = "Sean";
+export default function Analytics() {
   return (
-    <div className="flex-1 p-6">
-      <div className="text-2xl font-semibold mb-6">Hello, {user}!</div>
+    <div className="">
       <div className="flex flex-row my-3 mx-6 gap-3">
         <div className="flex flex-col gap-3">
           <div className="rounded-2xl bg-white shadow-lg p-5"></div>
