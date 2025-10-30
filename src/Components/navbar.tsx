@@ -11,12 +11,11 @@ export default function Navbar() {
     <>
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all z-20 flex items-center justify-center"
+        className="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 transition-all z-20 flex items-center justify-center"
       >
         {isSidebarOpen ? "✕" : "☰"}
       </button>
 
-      {/* Overlay - Only appears on mobile when sidebar is open */}
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
@@ -24,7 +23,6 @@ export default function Navbar() {
         />
       )}
 
-      {/* Sidebar - Hidden on mobile by default, always visible on desktop */}
       <aside
         className={`
             fixed top-0 left-0 h-full w-56 bg-white shadow-xl z-20
