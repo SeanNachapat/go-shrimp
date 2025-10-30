@@ -37,8 +37,8 @@ export default function Topbar() {
 
   return (
     <>
-      <div className="w-[calc(85vw-3.5rem)] my-5 mx-6 flex flex-row items-center justify-between">
-        <div className="text-sm rounded-2xl px-2 bg-white">
+      <div className="w-fit my-5 mx-6 flex flex-row items-center justify-between overflow-hidden">
+        <div className="text-sm rounded-2xl px-2 bg-white hidden md:flex">
           {formatDate(currentTime)} | {getTimezone()}, {formatTime(currentTime)}
         </div>
 
@@ -57,11 +57,7 @@ export default function Topbar() {
               className="rounded-full size-9"
               src="https://avatars.githubusercontent.com/u/61649121?v=4"
             />
-            <div className="flex items-center">
-              <span className="material-symbols-outlined">
-                keyboard_arrow_down
-              </span>
-            </div>
+            <div className="flex items-center"></div>
           </button>
         </div>
       </div>
