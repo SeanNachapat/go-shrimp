@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "../components/navbar";
-import Topbar from "../components/topbar";
+// Use the exact, case-sensitive path that matches the filesystem (folder is `Components`)
+import Navbar from "../Components/navbar";
+import Topbar from "../Components/topbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
