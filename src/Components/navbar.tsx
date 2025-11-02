@@ -11,7 +11,7 @@ export default function Navbar() {
     <>
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 transition-all z-20 flex items-center justify-center"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 transition-all z-20 flex items-center justify-center"
       >
         {isSidebarOpen ? "✕" : "☰"}
       </button>
@@ -19,24 +19,19 @@ export default function Navbar() {
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
-          className="md:hidden fixed inset-0 bg-black opacity-50 z-10 transition-opacity"
+          className="fixed inset-0 bg-black opacity-20 z-10 transition-opacity"
         />
       )}
 
       <aside
         className={`
-            fixed top-0 left-0 h-full w-56 bg-white shadow-xl z-20
+            fixed top-0 left-0 h-full w-50 bg-white shadow-xl z-20
             transition-transform duration-300 ease-in-out
-            md:translate-x-0 md:relative md:block
-            ${
-              isSidebarOpen
-                ? "translate-x-0"
-                : "-translate-x-full md:translate-x-0"
-            }
+            ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
           `}
       >
-        <div className="flex flex-col bg-white max-w-full items-center h-screen py-5 px-3 gap-7">
-          <Link href="/" className="w-full flex justify-center">
+        <div className="flex flex-col bg-white max-w-full items-baseline h-screen py-5 px-5 gap-7">
+          <Link href="/" className="w-full flex ">
             <div className="flex flex-row gap-2 items-center">
               <img
                 className="size-14"

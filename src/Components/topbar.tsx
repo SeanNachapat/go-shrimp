@@ -37,7 +37,7 @@ export default function Topbar() {
 
   return (
     <>
-      <div className="w-fit my-5 mx-6 flex flex-row items-center justify-between overflow-hidden">
+      <div className="w-screen py-5 px- flex flex-row items-center justify-between overflow-hidden">
         <div className="text-sm rounded-2xl px-2 bg-white hidden md:flex">
           {formatDate(currentTime)} | {getTimezone()}, {formatTime(currentTime)}
         </div>

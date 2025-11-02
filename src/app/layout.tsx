@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// Use the exact, case-sensitive path that matches the filesystem (folder is `Components`)
 import Navbar from "../Components/navbar";
 import Topbar from "../Components/topbar";
 import "./globals.css";
