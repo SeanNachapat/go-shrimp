@@ -3,69 +3,118 @@ export default function Database() {
     <div className="gap-3">
       <div className="flex flex-row my-3 gap-3">
         <div className="flex flex-col gap-3">
-          <div className="rounded-2xl bg-white shadow-lg p-5 w-6xl">
+          <div className="rounded-2xl bg-white shadow-lg p-5 w-7xl">
             <form>
-              <div className="grid gap-6 mb-6 md:grid-cols-2">
+              <div className="max-w-screen mb-6 gap-6 grid grid-cols-2">
                 <div>
-                  <label
-                    htmlFor="first_name"
-                    className="block mb-2 text-sm font-medium text-gray-90"
-                  >
-                    First name
+                  <label className="block mb-2 text-sm font-medium text-gray-90">
+                    Pond
                   </label>
-                  <input
-                    type="text"
-                    id="first_name"
+                  <select
+                    name="ponds"
+                    id="ponds"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    placeholder="John"
-                    required
-                  />
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
                 </div>
                 <div>
                   <label
-                    htmlFor="last_name"
+                    htmlFor="age"
                     className="block mb-2 text-sm font-medium text-gray-900"
                   >
-                    Last name
+                    Date
                   </label>
                   <input
-                    type="text"
-                    id="last_name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                    placeholder="Doe"
+                    type="number"
+                    id="age"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="1"
                     required
                   />
                 </div>
               </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="john.doe@company.com"
-                  required
-                />
+              <div className="mb-6 grid grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="date"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="john.doe@company.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="time"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Time
+                  </label>
+                  <input
+                    type="time"
+                    id="time"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder=""
+                    required
+                  />
+                </div>
               </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="•••••••••"
-                  required
-                />
+              <div className="mb-6 grid grid-cols-3 gap-6">
+                <div className="">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Water Temperature
+                  </label>
+                  <input
+                    type="temperature"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="30 C"
+                    required
+                  />
+                </div>
+                <div className="">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Salinity
+                  </label>
+                  <input
+                    type="temperature"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="30 C"
+                    required
+                  />
+                </div>
+                <div className="">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900"
+                  >
+                    Turbidity
+                  </label>
+                  <input
+                    type="temperature"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="30 C"
+                    required
+                  />
+                </div>
               </div>
               <div className="mb-6">
                 <label
