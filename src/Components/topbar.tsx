@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Topbar() {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const { user } = useAuth();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,7 +44,7 @@ export default function Topbar() {
           {formatDate(currentTime)} | {getTimezone()}, {formatTime(currentTime)}
         </div>
 
-        <div className="flex flex-row gap-5">
+        <div className="hidden md:flex flex-row gap-5">
           <button className="">
             <span className="rounded-2xl px-2 py-1 bg-white text-sm">
               TH/EN
@@ -55,7 +57,8 @@ export default function Topbar() {
           <button className="flex flex-row items-center">
             <img
               className="rounded-full size-9"
-              src="https://avatars.githubusercontent.com/u/61649121?v=4"
+              src={user?.picture || "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/svg/1f990.svg"}
+              alt="Profile"
             />
             <div className="flex items-center"></div>
           </button>

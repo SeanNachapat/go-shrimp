@@ -3,7 +3,7 @@ export default function Database() {
     <div className="gap-3">
       <div className="flex flex-row my-3 gap-3">
         <div className="flex flex-col gap-3">
-          <div className="rounded-2xl bg-white shadow-lg p-5 w-7xl">
+          <div className="flex rounded-2xl bg-white shadow-lg p-5 w-full">
             <form>
               <div className="max-w-screen mb-6 gap-6 grid grid-cols-2">
                 <div>

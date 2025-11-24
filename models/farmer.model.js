@@ -2,32 +2,42 @@ const mongoose = require('mongoose');
 
 const FarmerSchema = mongoose.Schema(
     {
-        username: { 
-            type: String, 
-            required: true, 
-            unique: true, 
-            trim: true 
+        username: {
+            type: String,
+            required: false,
+            unique: true,
+            trim: true,
+            sparse: true
         },
-        fullName: { 
-            type: String, 
-            required: true 
+        lineId: {
+            type: String,
+            unique: true,
+            sparse: true
         },
-        role: { 
-            type: String, 
+        fullName: {
+            type: String,
+            required: true
+        },
+        picture: {
+            type: String,
+            required: true,
+        },
+        role: {
+            type: String,
             enum: ['admin', 'manager', 'employee', 'farmer'],
             default: 'employee'
         },
-        isActive: { 
-            type: Boolean, 
-            default: true 
+        isActive: {
+            type: Boolean,
+            default: true
         },
-        createdAt: { 
-            type: Date, 
-            default: Date.now 
+        createdAt: {
+            type: Date,
+            default: Date.now
         },
-        updatedAt: { 
-            type: Date, 
-            default: Date.now 
+        updatedAt: {
+            type: Date,
+            default: Date.now
         }
     }
 );

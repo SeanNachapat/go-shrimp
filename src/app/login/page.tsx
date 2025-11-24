@@ -14,7 +14,7 @@ export default function Login() {
               <div>Shrimp</div>
             </div>
           </div>
-          <Link href="">
+          <Link href="http://localhost:4000/auth/line">
             <div className="flex bg-green-500 rounded-lg overflow-hidden">
               <div className="flex m-3 mx-4 flex-row items-center gap-2">
                 <img src={line.src} className="w-8" />

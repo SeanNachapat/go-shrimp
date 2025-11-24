@@ -4,9 +4,11 @@ import shrimpImage from "../images/shrimp.png";
 import Topbar from "./topbar";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { logout } = useAuth();
   return (
     <>
       <button
@@ -69,6 +71,13 @@ export default function Navbar() {
                 <span>Database</span>
               </div>
             </Link>
+
+            <button onClick={logout} className="w-fit flex justify-center text-red-600">
+              <div className="rounded-4xl hover:outline px-5 py-2 flex items-center gap-2">
+                <span className="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+              </div>
+            </button>
           </div>
         </div>
       </aside>

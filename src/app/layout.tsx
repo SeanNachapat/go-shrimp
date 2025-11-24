@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import RootShell from "@/Components/RootShell";
 import "./globals.css";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "GoShrimp",
@@ -21,7 +22,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <RootShell>{children}</RootShell>
+        <AuthProvider>
+            <RootShell>{children}</RootShell>
+        </AuthProvider>
       </body>
     </html>
   );
