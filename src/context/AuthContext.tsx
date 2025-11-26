@@ -24,6 +24,8 @@ const AuthContext = createContext<AuthContextType>({
   logout: async () => {},
 });
 
+import Loading from "@/Components/Loading";
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -74,7 +76,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
-      {!loading ? children : <div className="flex h-screen w-screen justify-center items-center">Loading...</div>}
+      {!loading ? children : <Loading />}
     </AuthContext.Provider>
   );
 };

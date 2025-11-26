@@ -24,8 +24,12 @@ const FarmerSchema = mongoose.Schema(
         },
         role: {
             type: String,
-            enum: ['admin', 'manager', 'employee', 'farmer'],
-            default: 'employee'
+            enum: ['admin', 'farmer'],
+            default: 'farmer'
+        },
+        farmId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Farm'
         },
         isActive: {
             type: Boolean,
@@ -42,6 +46,5 @@ const FarmerSchema = mongoose.Schema(
     }
 );
 
-FarmerSchema.index({ username: 1 });
 const Farmer = mongoose.model("Farmer", FarmerSchema);
 module.exports = Farmer;

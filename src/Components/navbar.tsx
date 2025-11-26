@@ -47,7 +47,7 @@ export default function Navbar() {
             </div>
           </Link>
           <div className="flex flex-col items-center gap-5 text-base">
-            <Link href="/" className="w-fit flex justify-center">
+            <Link onClick={() => setIsSidebarOpen(false)} href="/" className="w-fit flex justify-center">
               <div className="rounded-4xl hover:outline px-5 py-2 flex items-center gap-2">
                 <span className="material-symbols-outlined">
                   space_dashboard
@@ -56,7 +56,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            <Link href="/analytics" className="w-fit flex justify-center">
+            <Link onClick={() => setIsSidebarOpen(false)} href="/analytics" className="w-fit flex justify-center">
               <div className="rounded-4xl hover:outline px-5 py-2 flex items-center gap-2">
                 <span className="material-symbols-outlined">
                   browse_activity
@@ -65,10 +65,17 @@ export default function Navbar() {
               </div>
             </Link>
 
-            <Link href="/database" className="w-fit flex justify-center">
+            <Link onClick={() => setIsSidebarOpen(false)} href="/database" className="w-fit flex justify-center">
               <div className="rounded-4xl hover:outline px-5 py-2 flex items-center gap-2">
                 <span className="material-symbols-outlined">database</span>
                 <span>Database</span>
+              </div>
+            </Link>
+
+            <Link onClick={() => setIsSidebarOpen(false)} href="/manage-farm" className="w-fit flex justify-center">
+              <div className="rounded-4xl hover:outline px-5 py-2 flex items-center gap-2">
+                <span className="material-symbols-outlined">agriculture</span>
+                <span>Farm</span>
               </div>
             </Link>
 
