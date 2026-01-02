@@ -24,7 +24,7 @@ export default function ManageFarm() {
 
   const fetchMyFarm = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/my-farm", { credentials: "include" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/my-farm`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setFarm(data.farm);
@@ -46,7 +46,7 @@ export default function ManageFarm() {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/farm/members", { credentials: "include" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/members`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         setMembers(data);
@@ -58,7 +58,7 @@ export default function ManageFarm() {
 
   const fetchPonds = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/ponds", { credentials: "include" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/ponds`, { credentials: "include" });
       if (res.ok) {
         const data = await res.json();
         // Filter ponds for this farm if needed, but API returns all. 
@@ -87,7 +87,7 @@ export default function ManageFarm() {
   const handleJoinFarm = async (e: any) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:4000/api/farm/join", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ farmId: joinFarmId }),
@@ -109,7 +109,7 @@ export default function ManageFarm() {
   const handleRemoveMember = async (memberId: string) => {
     if (!confirm("Are you sure you want to remove this member?")) return;
     try {
-      const res = await fetch(`http://localhost:4000/api/farm/member/${memberId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/member/${memberId}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -127,7 +127,7 @@ export default function ManageFarm() {
   const handleUpdateFarm = async (e: any) => {
     e.preventDefault();
     try {
-        const res = await fetch(`http://localhost:4000/api/farm/${farm._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/${farm._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(editFarmData),
@@ -148,7 +148,7 @@ export default function ManageFarm() {
   const handleDeletePond = async (pondId: string) => {
     if (!confirm("Are you sure you want to delete this pond? This action cannot be undone.")) return;
     try {
-        const res = await fetch(`http://localhost:4000/api/pond/${pondId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/pond/${pondId}`, {
             method: "DELETE",
             credentials: "include"
         });
@@ -166,7 +166,7 @@ export default function ManageFarm() {
   const handleLeaveFarm = async () => {
     if (!confirm("Are you sure you want to leave this farm?")) return;
     try {
-        const res = await fetch("http://localhost:4000/api/farm/leave", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/leave`, {
             method: "POST",
             credentials: "include"
         });
@@ -188,7 +188,7 @@ export default function ManageFarm() {
   const handleDeleteFarm = async () => {
     if (!confirm("Are you sure you want to delete this farm? This action cannot be undone and will remove all members and data.")) return;
     try {
-        const res = await fetch("http://localhost:4000/api/farm", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm`, {
             method: "DELETE",
             credentials: "include"
         });
@@ -216,13 +216,13 @@ export default function ManageFarm() {
         <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
             <div className="flex border-b mb-4">
                 <button 
-                    className={`flex-1 py-2 text-center ${!isEditingFarm ? 'border-b-2 border-blue-600 font-semibold text-blue-600' : 'text-gray-500'}`}
+                    className={`flex-1 py-2 text-center ${!isEditingFarm ? 'border-b-2 border-orange-600 font-semibold text-orange-600' : 'text-neutral-500'}`}
                     onClick={() => setIsEditingFarm(false)}
                 >
                     Join Farm
                 </button>
                 <button 
-                    className={`flex-1 py-2 text-center ${isEditingFarm ? 'border-b-2 border-blue-600 font-semibold text-blue-600' : 'text-gray-500'}`}
+                    className={`flex-1 py-2 text-center ${isEditingFarm ? 'border-b-2 border-orange-600 font-semibold text-orange-600' : 'text-neutral-500'}`}
                     onClick={() => setIsEditingFarm(true)}
                 >
                     Create Farm
@@ -241,11 +241,11 @@ export default function ManageFarm() {
                             onChange={(e) => setJoinFarmId(e.target.value)}
                             required
                         />
-                        <button type="submit" className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                        <button type="submit" className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700">
                             Join Farm
                         </button>
                     </form>
-                    <div className="mt-4 text-center text-sm text-gray-500">
+                    <div className="mt-4 text-center text-sm text-neutral-500">
                         Ask your manager to share the Farm ID.
                     </div>
                 </>
@@ -255,7 +255,7 @@ export default function ManageFarm() {
                     <form onSubmit={async (e) => {
                         e.preventDefault();
                         try {
-                            const res = await fetch("http://localhost:4000/api/farm/new", {
+                            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/api/farm/new`, {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify(editFarmData),
@@ -309,14 +309,14 @@ export default function ManageFarm() {
   return (
     <div className="p-5 max-w-6xl mx-auto">
       {/* Farm Header */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+      <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 dark:bg-neutral-800">
         <div className="flex justify-between items-start">
             <div>
                 {isEditingFarm ? (
                     <form onSubmit={handleUpdateFarm} className="space-y-3">
                         <input 
                             type="text" 
-                            className="text-2xl font-bold border-b border-gray-300 focus:outline-none focus:border-blue-500"
+                            className="text-2xl font-bold border-b border-neutral-300 focus:outline-none focus:border-orange-500 bg-transparent dark:text-white dark:border-neutral-600"
                             value={editFarmData.farmName}
                             onChange={(e) => setEditFarmData({...editFarmData, farmName: e.target.value})}
                         />
@@ -324,45 +324,45 @@ export default function ManageFarm() {
                             <input 
                                 type="text" 
                                 placeholder="Location"
-                                className="text-sm border p-1 rounded"
+                                className="text-sm border p-1 rounded bg-transparent dark:text-white dark:border-neutral-600"
                                 value={editFarmData.location}
                                 onChange={(e) => setEditFarmData({...editFarmData, location: e.target.value})}
                             />
                             <input 
                                 type="number" 
                                 placeholder="Area (sqm)"
-                                className="text-sm border p-1 rounded w-24"
+                                className="text-sm border p-1 rounded w-24 bg-transparent dark:text-white dark:border-neutral-600"
                                 value={editFarmData.totalAreaSqm}
                                 onChange={(e) => setEditFarmData({...editFarmData, totalAreaSqm: e.target.value})}
                             />
                         </div>
                         <div className="flex gap-2 mt-2">
                             <button type="submit" className="text-xs bg-green-600 text-white px-3 py-1 rounded">Save</button>
-                            <button type="button" onClick={() => setIsEditingFarm(false)} className="text-xs bg-gray-300 px-3 py-1 rounded">Cancel</button>
+                            <button type="button" onClick={() => setIsEditingFarm(false)} className="text-xs bg-neutral-300 px-3 py-1 rounded dark:bg-neutral-700 dark:text-neutral-300">Cancel</button>
                         </div>
                     </form>
                 ) : (
                     <>
-                        <h1 className="text-3xl font-bold text-gray-900">{farm.farmName}</h1>
-                        <div className="text-gray-500 mt-1 flex items-center gap-2">
+                        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{farm.farmName}</h1>
+                        <div className="text-neutral-500 mt-1 flex items-center gap-2 dark:text-neutral-400">
                             <span className="material-symbols-outlined text-sm">location_on</span>
                             {farm.location || "No location set"}
                         </div>
-                        <div className="text-gray-500 text-sm mt-1">
+                        <div className="text-neutral-500 text-sm mt-1 dark:text-neutral-400">
                             Total Area: {farm.totalAreaSqm ? `${farm.totalAreaSqm} sqm` : "N/A"}
                         </div>
                     </>
                 )}
             </div>
             <div className="flex flex-col items-end gap-2">
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${role === 'owner' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'}`}>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium ${role === 'owner' ? 'bg-purple-100 text-purple-800' : 'bg-orange-100 text-orange-800'}`}>
                     {role === 'owner' ? 'Owner' : 'Employee'}
                 </span>
                 {role === 'owner' && !isEditingFarm && (
                     <div className="flex gap-2">
                         <button 
                             onClick={() => setIsEditingFarm(true)}
-                            className="text-sm text-gray-600 hover:text-blue-600 flex items-center gap-1"
+                            className="text-sm text-neutral-600 hover:text-orange-600 flex items-center gap-1"
                         >
                             <span className="material-symbols-outlined text-sm">edit</span> Edit Farm
                         </button>
@@ -386,13 +386,13 @@ export default function ManageFarm() {
         </div>
         
         {role === 'owner' && (
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="text-sm font-medium text-gray-700 mb-1">Invite Code (Farm ID)</div>
+            <div className="mt-6 p-4 bg-neutral-50 rounded-lg border border-neutral-200 dark:bg-neutral-700 dark:border-neutral-600">
+                <div className="text-sm font-medium text-neutral-700 mb-1 dark:text-neutral-300">Invite Code (Farm ID)</div>
                 <div className="flex items-center gap-2">
-                    <code className="bg-white px-3 py-1 rounded border text-gray-800 font-mono select-all">
+                    <code className="bg-white px-3 py-1 rounded border text-neutral-800 font-mono select-all dark:bg-neutral-600 dark:text-white dark:border-neutral-500">
                         {farm._id}
                     </code>
-                    <span className="text-xs text-gray-500">Share this with your employees to let them join.</span>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-400">Share this with your employees to let them join.</span>
                 </div>
             </div>
         )}
@@ -400,14 +400,14 @@ export default function ManageFarm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Members Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-2xl shadow-lg p-6 dark:bg-neutral-800">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white">
                 <span className="material-symbols-outlined">group</span>
                 Team Members
             </h2>
             <div className="space-y-4">
                 {members.map((member) => (
-                    <div key={member._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={member._id} className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg dark:bg-neutral-700">
                         <div className="flex items-center gap-3">
                             <img 
                                 src={member.picture || "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/svg/1f990.svg"} 
@@ -415,8 +415,8 @@ export default function ManageFarm() {
                                 className="w-10 h-10 rounded-full"
                             />
                             <div>
-                                <div className="font-medium text-gray-900">{member.fullName}</div>
-                                <div className="text-xs text-gray-500 capitalize">{member.role}</div>
+                                <div className="font-medium text-neutral-900 dark:text-white">{member.fullName}</div>
+                                <div className="text-xs text-neutral-500 capitalize dark:text-neutral-300">{member.role}</div>
                             </div>
                         </div>
                         {role === 'owner' && member._id !== user?._id && (
@@ -430,22 +430,22 @@ export default function ManageFarm() {
                         )}
                     </div>
                 ))}
-                {members.length === 0 && <div className="text-gray-500 text-center py-4">No members yet.</div>}
+                {members.length === 0 && <div className="text-neutral-500 text-center py-4 dark:text-neutral-400">No members yet.</div>}
             </div>
         </div>
 
         {/* Ponds Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-2xl shadow-lg p-6 dark:bg-neutral-800">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white">
                 <span className="material-symbols-outlined">water_drop</span>
                 Ponds
             </h2>
             <div className="space-y-3">
                 {ponds.map((pond) => (
-                    <div key={pond._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={pond._id} className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg dark:bg-neutral-700">
                         <div>
-                            <div className="font-medium text-gray-900">{pond.pondName}</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="font-medium text-neutral-900 dark:text-white">{pond.pondName}</div>
+                            <div className="text-xs text-neutral-500 dark:text-neutral-300">
                                 {pond.areaSqm} sqm • {pond.depthM}m depth • {pond.pondType}
                             </div>
                         </div>
@@ -460,7 +460,7 @@ export default function ManageFarm() {
                         )}
                     </div>
                 ))}
-                {ponds.length === 0 && <div className="text-gray-500 text-center py-4">No ponds created yet.</div>}
+                {ponds.length === 0 && <div className="text-neutral-500 text-center py-4 dark:text-neutral-400">No ponds created yet.</div>}
             </div>
         </div>
       </div>

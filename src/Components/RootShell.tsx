@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "./navbar";
 import Topbar from "./topbar";
+import MobileBottomNav from "./MobileBottomNav";
 
 export default function RootShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || "/";
@@ -18,6 +19,7 @@ export default function RootShell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex flex-col">
         {!hideShell && <Topbar />}
         {children}
+        {!hideShell && <MobileBottomNav />}
       </div>
     </div>
   );

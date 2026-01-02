@@ -20,7 +20,7 @@ const mongoOptions = {
 };
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true
 }));
 
@@ -80,9 +80,9 @@ app.get('/ping', (req, res) => {
 app.get('/auth/line', passport.authenticate('line'));
 
 app.get('/auth/line/callback',
-  passport.authenticate('line', { failureRedirect: 'http://localhost:3000/login?error=login_failed' }),
+  passport.authenticate('line', { failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/login?error=login_failed` }),
   (req, res) => {
-    res.redirect('http://localhost:3000/');
+    res.redirect(process.env.FRONTEND_URL || 'http://localhost:3000/');
   }
 );
 

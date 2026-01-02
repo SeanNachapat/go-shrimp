@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import RootShell from "@/Components/RootShell";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "GoShrimp",
@@ -23,7 +25,11 @@ export default function RootLayout({
       </head>
       <body>
         <AuthProvider>
-            <RootShell>{children}</RootShell>
+          <LanguageProvider>
+            <ThemeProvider>
+              <RootShell>{children}</RootShell>
+            </ThemeProvider>
+          </LanguageProvider>
         </AuthProvider>
       </body>
     </html>

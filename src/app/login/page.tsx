@@ -5,16 +5,16 @@ import Link from "next/link";
 export default function Login() {
   return (
     <>
-      <div className="flex h-screen w-screen justify-center items-center bg-black/5">
-        <div className="flex w-max h-max bg-white rounded-lg shadow-2xl justify-center items-center m-5 p-10 flex-col gap-5">
+      <div className="flex h-screen w-screen justify-center items-center bg-black/5 dark:bg-neutral-900">
+        <div className="flex w-max h-max bg-white rounded-lg shadow-2xl justify-center items-center m-5 p-10 flex-col gap-5 dark:bg-neutral-800">
           <div className="flex flex-row gap-2 items-center">
             <img className="size-14" src={shrimpImage.src} alt="shrimp logo" />
-            <div className="font-bold text-left leading-none text-xl">
+            <div className="font-bold text-left leading-none text-xl dark:text-white">
               <div>Go</div>
               <div>Shrimp</div>
             </div>
           </div>
-          <Link href="http://localhost:4000/auth/line">
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/auth/line`}>
             <div className="flex bg-green-500 rounded-lg overflow-hidden">
               <div className="flex m-3 mx-4 flex-row items-center gap-2">
                 <img src={line.src} className="w-8" />
