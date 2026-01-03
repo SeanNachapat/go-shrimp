@@ -18,20 +18,6 @@ export default function Navbar() {
 
   return (
     <>
-      <button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 transition-all z-20 flex items-center justify-center md:hidden"
-      >
-        {isSidebarOpen ? "✕" : "☰"}
-      </button>
-
-      {isSidebarOpen && (
-        <div
-          onClick={() => setIsSidebarOpen(false)}
-          className="fixed inset-0 bg-black opacity-20 z-10 transition-opacity md:hidden"
-        />
-      )}
-
       <aside
         className={`
             fixed top-0 left-0 h-full w-fit bg-white dark:bg-neutral-900 dark:border-r dark:border-neutral-800 shadow-xl z-20

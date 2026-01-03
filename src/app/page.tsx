@@ -2,6 +2,8 @@
 
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { WeatherWidget, WaterQualityWidget, MoultingCycleWidget, ShrimpPriceWidget } from "@/Components/DashboardWidgets";
 
 export default function Home() {
   const { user } = useAuth();
@@ -55,11 +57,13 @@ export default function Home() {
     }).toUpperCase(); 
   };
 
+  const { t } = useLanguage();
+
   return (
     <div className="flex-1 p-6 pb-24 md:pb-6 bg-neutral-50 min-h-screen dark:bg-neutral-900">
-       <div className="flex justify-between items-end mb-6">
+       <div className="flex justify-between items-end mb-8">
            <div>
-               <h2 className="text-slate-400 font-bold text-xs tracking-wider uppercase mb-1">Welcome</h2>
+               <h2 className="text-slate-400 font-bold text-xs tracking-wider uppercase mb-1">{t("welcome")}</h2>
                <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">{farmName}</h1>
            </div>
            <div className="text-right">
@@ -73,13 +77,20 @@ export default function Home() {
            </div>
        </div>
 
-      <div className="flex flex-row my-3 mx-6 gap-3">
-        <div className="flex flex-col gap-3">
-          <div className="rounded-2xl bg-white shadow-lg p-5 dark:bg-neutral-800"></div>
-          <div className="rounded-2xl bg-white shadow-lg p-5 dark:bg-neutral-800"></div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column (Weather & Water Quality) */}
+        <div className="flex flex-col gap-6 lg:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <WeatherWidget />
+                <MoultingCycleWidget />
+            </div>
+            <WaterQualityWidget />
         </div>
-        <div className="rounded-2xl bg-white shadow-lg p-5 dark:bg-neutral-800 dark:text-white">
-          <span className="text-lg font-bold">🦐 ราคากุ้ง</span>
+
+        {/* Right Column (Price & Other info) */}
+        <div className="flex flex-col gap-6">
+             <ShrimpPriceWidget />
+             {/* You could add more widgets here like Feed Consumed or Alerts */}
         </div>
       </div>
     </div>

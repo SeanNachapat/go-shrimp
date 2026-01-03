@@ -184,8 +184,24 @@ app.get('/api/pond/:pondId/active-cycle', async (req, res) => {
 });
 
 app.get('/api/records', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ message: 'Not authenticated' });
   try {
-    const records = await DailyReading.find({})
+    const user = await Farmer.findById(req.user.id);
+    let farmId = user.farmId;
+
+    if (!farmId) {
+      const ownedFarm = await Farm.findOne({ farmerId: user._id });
+      if (ownedFarm) farmId = ownedFarm._id;
+    }
+
+    if (!farmId) {
+      return res.status(200).json([]);
+    }
+
+    const ponds = await Pond.find({ farmId: farmId }).select('_id');
+    const pondIds = ponds.map(p => p._id);
+
+    const records = await DailyReading.find({ pondId: { $in: pondIds } })
       .sort({ readingDatetime: -1 })
       .limit(50)
       .populate('pondId', 'pondName')
